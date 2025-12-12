@@ -1,22 +1,6 @@
-import os
-import pytest
-from .main import get_ptt_boards, insert_ptt_board
+from .main import insert_ptt_board
 from .models import Board
 from playwright.sync_api import expect
-
-
-@pytest.mark.skipif(
-    os.getenv("CI") == "true",
-    reason="在 CI 環境中跳過，使用 Playwright 測試替代（test_verify_stock_board_exists）"
-)
-def test_get_ptt_boards():
-    """使用 requests 取得 PTT 看板列表（本地測試用）"""
-    expected = "Stock"
-
-    result = get_ptt_boards()
-    print(result)
-
-    assert expected in result
 
 
 def test_verify_stock_board_exists(page_with_timeout):

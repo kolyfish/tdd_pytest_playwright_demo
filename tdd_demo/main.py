@@ -1,26 +1,6 @@
-import requests
-from bs4 import BeautifulSoup
 from datetime import datetime
 from sqlalchemy.orm import Session
 from .models import Board
-
-
-def get_ptt_boards():
-    url = "https://www.ptt.cc/bbs/index.html"
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/91.0.4472.124 Safari/537.36"
-        )
-    }
-
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, "lxml")
-
-    board_names = soup.find_all(name="div", attrs={"class": "board-name"})
-    return [board.get_text() for board in board_names]
 
 
 def insert_ptt_board(name: str, session: Session):
