@@ -1,4 +1,5 @@
 """使用 Playwright 查詢 PTT 看板列表並列印"""
+
 from playwright.sync_api import sync_playwright
 
 
@@ -38,4 +39,3 @@ def get_ptt_boards_with_playwright():
 
 if __name__ == "__main__":
     get_ptt_boards_with_playwright()
-
